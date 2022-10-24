@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		69FE92AA2906907100F3F924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE92A92906907100F3F924 /* AppDelegate.swift */; };
 		69FE92AC2906907100F3F924 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE92AB2906907100F3F924 /* SceneDelegate.swift */; };
-		69FE92AE2906907100F3F924 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE92AD2906907100F3F924 /* ViewController.swift */; };
 		69FE92B12906907200F3F924 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69FE92AF2906907200F3F924 /* Main.storyboard */; };
 		69FE92B32906907300F3F924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69FE92B22906907300F3F924 /* Assets.xcassets */; };
 		69FE92B62906907300F3F924 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69FE92B42906907300F3F924 /* LaunchScreen.storyboard */; };
 		69FE92C12906907300F3F924 /* NY_Times_ArticlesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE92C02906907300F3F924 /* NY_Times_ArticlesTests.swift */; };
 		69FE92CB2906907300F3F924 /* NY_Times_ArticlesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE92CA2906907300F3F924 /* NY_Times_ArticlesUITests.swift */; };
 		69FE92CD2906907300F3F924 /* NY_Times_ArticlesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE92CC2906907300F3F924 /* NY_Times_ArticlesUITestsLaunchTests.swift */; };
+		69FE92E32906A06500F3F924 /* ArticlesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE92E22906A06500F3F924 /* ArticlesListViewController.swift */; };
+		69FE92E52906A07F00F3F924 /* ArticlesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE92E42906A07F00F3F924 /* ArticlesListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +40,6 @@
 		69FE92A62906907100F3F924 /* NY Times Articles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NY Times Articles.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FE92A92906907100F3F924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69FE92AB2906907100F3F924 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		69FE92AD2906907100F3F924 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		69FE92B02906907200F3F924 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		69FE92B22906907300F3F924 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		69FE92B52906907300F3F924 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +49,8 @@
 		69FE92C62906907300F3F924 /* NY Times ArticlesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NY Times ArticlesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FE92CA2906907300F3F924 /* NY_Times_ArticlesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NY_Times_ArticlesUITests.swift; sourceTree = "<group>"; };
 		69FE92CC2906907300F3F924 /* NY_Times_ArticlesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NY_Times_ArticlesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		69FE92E22906A06500F3F924 /* ArticlesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListViewController.swift; sourceTree = "<group>"; };
+		69FE92E42906A07F00F3F924 /* ArticlesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +101,12 @@
 		69FE92A82906907100F3F924 /* NY Times Articles */ = {
 			isa = PBXGroup;
 			children = (
-				69FE92A92906907100F3F924 /* AppDelegate.swift */,
-				69FE92AB2906907100F3F924 /* SceneDelegate.swift */,
-				69FE92AD2906907100F3F924 /* ViewController.swift */,
-				69FE92AF2906907200F3F924 /* Main.storyboard */,
-				69FE92B22906907300F3F924 /* Assets.xcassets */,
-				69FE92B42906907300F3F924 /* LaunchScreen.storyboard */,
-				69FE92B72906907300F3F924 /* Info.plist */,
+				69FE92DF29069FDF00F3F924 /* Models */,
+				69FE92DD29069F9E00F3F924 /* Scenes */,
+				69FE92DC29069F3700F3F924 /* App Lifecycle */,
+				69FE92DB29069F1900F3F924 /* Configurations */,
+				69FE92D929069EE500F3F924 /* Storyboard */,
+				69FE92DA29069EF800F3F924 /* Resources */,
 			);
 			path = "NY Times Articles";
 			sourceTree = "<group>";
@@ -125,6 +126,80 @@
 				69FE92CC2906907300F3F924 /* NY_Times_ArticlesUITestsLaunchTests.swift */,
 			);
 			path = "NY Times ArticlesUITests";
+			sourceTree = "<group>";
+		};
+		69FE92D929069EE500F3F924 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				69FE92AF2906907200F3F924 /* Main.storyboard */,
+				69FE92B42906907300F3F924 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		69FE92DA29069EF800F3F924 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				69FE92B22906907300F3F924 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		69FE92DB29069F1900F3F924 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				69FE92B72906907300F3F924 /* Info.plist */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		69FE92DC29069F3700F3F924 /* App Lifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				69FE92A92906907100F3F924 /* AppDelegate.swift */,
+				69FE92AB2906907100F3F924 /* SceneDelegate.swift */,
+			);
+			path = "App Lifecycle";
+			sourceTree = "<group>";
+		};
+		69FE92DD29069F9E00F3F924 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				69FE92DE29069FC000F3F924 /* ArticlesList */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		69FE92DE29069FC000F3F924 /* ArticlesList */ = {
+			isa = PBXGroup;
+			children = (
+				69FE92E12906A03D00F3F924 /* ViewModels */,
+				69FE92E02906A03100F3F924 /* Views */,
+			);
+			path = ArticlesList;
+			sourceTree = "<group>";
+		};
+		69FE92DF29069FDF00F3F924 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		69FE92E02906A03100F3F924 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				69FE92E22906A06500F3F924 /* ArticlesListViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		69FE92E12906A03D00F3F924 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				69FE92E42906A07F00F3F924 /* ArticlesListViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +333,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69FE92AE2906907100F3F924 /* ViewController.swift in Sources */,
 				69FE92AA2906907100F3F924 /* AppDelegate.swift in Sources */,
+				69FE92E52906A07F00F3F924 /* ArticlesListViewModel.swift in Sources */,
 				69FE92AC2906907100F3F924 /* SceneDelegate.swift in Sources */,
+				69FE92E32906A06500F3F924 /* ArticlesListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +517,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F74Y822XC3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "NY Times Articles/Info.plist";
+				INFOPLIST_FILE = "NY Times Articles/Configurations/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -469,7 +545,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F74Y822XC3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "NY Times Articles/Info.plist";
+				INFOPLIST_FILE = "NY Times Articles/Configurations/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
