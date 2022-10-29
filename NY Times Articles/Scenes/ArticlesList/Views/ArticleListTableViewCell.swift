@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ArticleListTableViewCell: UITableViewCell {
 
@@ -15,6 +16,14 @@ class ArticleListTableViewCell: UITableViewCell {
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleDateLabel: UILabel!
     
+    private let placeholderImage = UIImage(named: "placeholder-image")
+    
+    
+    var viewModel: ArticleListCellViewModel! {
+        didSet {
+            setupData()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,10 +31,19 @@ class ArticleListTableViewCell: UITableViewCell {
         setupViewsAppearance()
     }
     
-    private func setupViewsAppearance() {
+}
+
+private extension ArticleListTableViewCell {
+    
+    func setupViewsAppearance() {
         outerView.setCornerRadius(10)
-        
         articleImageView.setCornerRadius(5, andClipContent: true)
     }
-
+    
+    func setupData() {
+        articleTitleLabel.text = viewModel.articleTitle
+        authorNameLabel.text = viewModel.authorNameText
+        articleDateLabel.text = viewModel.publishedDate
+        articleImageView.sd_setImage(with: viewModel.articleImageURL, placeholderImage: placeholderImage)
+    }
 }

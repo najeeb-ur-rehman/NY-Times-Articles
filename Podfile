@@ -7,7 +7,7 @@ target 'NY Times Articles' do
 
   pod 'Alamofire'
   pod 'SDWebImage', '~> 5.0'
-#  pod 'MBProgressHUD', '~> 1.2.0'
+  pod 'MBProgressHUD', '~> 1.2.0'
 
   target 'NY Times ArticlesTests' do
     inherit! :search_paths

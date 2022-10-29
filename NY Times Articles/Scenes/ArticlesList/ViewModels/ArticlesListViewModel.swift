@@ -7,76 +7,60 @@
 
 import Foundation
 
-struct Article: Codable {
-    var articleUrl: String?
-    var title: String
-    var authorName: String
-    var publishedDate: String
-    var media: [Media]?
-    
-    enum CodingKeys: String, CodingKey {
-        case articleUrl = "url"
-        case title
-        case authorName = "byline"
-        case publishedDate = "published_date"
-        case media
-    }
+protocol ArticlesListViewModelType {
+    var isLoading: Bool { get }
+    var dataAvailable: Bool { get }
+    var errorMessage: String? { get }
+    var totalArticles: Int { get }
+    func articleAtPosition(_ position: Int) -> Article?
+    func fetchPopularArtciles()
 }
 
-struct Media: Codable {
-    let type: String?
-    let metadata: [MediaMetadata]?
+class ArticlesListViewModel: ArticlesListViewModelType {
     
-    enum CodingKeys: String, CodingKey {
-        case type
-        case metadata = "media-metadata"
+    @Published private(set) var isLoading = false
+    @Published private(set) var dataAvailable = false
+    @Published private(set) var errorMessage: String?
+    
+    var totalArticles: Int {
+        articles.count
     }
     
-    var articlePosterURL: URL? {
-        var url: URL?
-        if (metadata?.count ?? 0) > 1 {
-            url = metadata?[1].url
-        } else if metadata?.count == 1 {
-            url = metadata?[0].url
+    
+    private(set) var articles = [Article]()
+    private let articleService: ArticleServiceType
+    
+    
+    init(service: ArticleServiceType) {
+        self.articleService = service
+    }
+    
+    
+    func articleAtPosition(_ position: Int) -> Article? {
+        if position < articles.count {
+            return articles[position]
         }
-        return url
+        return nil
     }
-}
-
-struct MediaMetadata : Codable {
-    let url : URL?
-    let format : String?
-    let height : Int?
-    let width : Int?
-}
-
-struct ArticlesResponse: Codable {
-    let status : String?
-    let results: [Article]?
-    let number: Int?
-    let copyright: String?
     
-    enum CodingKeys: String, CodingKey {
-        case status = "status"
-        case results = "results"
-        case number = "num_results"
-        case copyright = "copyright"
-    }
-}
-
-
-class ArticlesListViewModel {
-    
-    var articlesList: [Article] = []
-    
-    
-    func fetchArtciles(_ completion: @escaping ([Article]?) -> ()) {
-        let config = APIConfiguration(baseURL: URL(string: "https://api.nytimes.com")!, apiKey: "jABQK7KhauIOLisCnlYjh1uBqGMgUXAA")
-        let client = WebClient(config: config)
-        let service = ArticleService(config: config, apiClient: client)
-        
-        service.getArticles { (result: Result<ArticlesResponse, NetworkErrors>) in
-            dump(result)
+    func fetchPopularArtciles() {
+        isLoading = true
+        articleService.getArticles { [weak self] (result: Result<ArticlesResponse, NetworkErrors>) in
+            guard let self = self else {
+                return
+            }
+            self.isLoading = false
+            switch result {
+            case .success(let articleResponse):
+                if let articles = articleResponse.results, articles.count > 0 {
+                    self.dataAvailable = true
+                    self.articles = articles
+                } else {
+                    self.errorMessage = "No article found"
+                }
+            case .failure(let error):
+                self.errorMessage = error.errorDescription
+            }
         }
     }
 }
