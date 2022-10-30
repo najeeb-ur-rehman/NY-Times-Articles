@@ -16,9 +16,6 @@ class ArticleListTableViewCell: UITableViewCell {
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleDateLabel: UILabel!
     
-    private let placeholderImage = UIImage(named: "placeholder-image")
-    
-    
     var viewModel: ArticleListCellViewModel! {
         didSet {
             setupData()
@@ -44,6 +41,6 @@ private extension ArticleListTableViewCell {
         articleTitleLabel.text = viewModel.articleTitle
         authorNameLabel.text = viewModel.authorNameText
         articleDateLabel.text = viewModel.publishedDate
-        articleImageView.sd_setImage(with: viewModel.articleImageURL, placeholderImage: placeholderImage)
+        articleImageView.sd_setImage(with: viewModel.articleImageURL, placeholderImage: .placeholderImage)
     }
 }

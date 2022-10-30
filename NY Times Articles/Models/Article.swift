@@ -11,8 +11,10 @@ struct Article: Codable {
     var articleUrl: String?
     var title: String
     var authorName: String
-    var publishedDate: String
+    var publishedDate: Date
+    var section: String?
     var media: [Media]?
+    var summary: String
     
     enum CodingKeys: String, CodingKey {
         case articleUrl = "url"
@@ -20,6 +22,8 @@ struct Article: Codable {
         case authorName = "byline"
         case publishedDate = "published_date"
         case media
+        case section
+        case summary = "abstract"
     }
     
 }

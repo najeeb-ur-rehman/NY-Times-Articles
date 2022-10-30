@@ -36,6 +36,7 @@ class ArticlesListViewController: UIViewController {
         super.viewDidLoad()
         
         articlesListView.tableview.dataSource = self
+        articlesListView.tableview.delegate = self
         setupBindings()
         viewModel.fetchPopularArtciles()
     }
@@ -95,4 +96,16 @@ extension ArticlesListViewController: UITableViewDataSource {
         return viewModel.totalArticles
     }
     
+}
+
+
+extension ArticlesListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let art = viewModel.articleAtPosition(indexPath.row) else {
+            return
+        }
+        let ctrl = AppContainer.makeArticleDetailViewController(art)
+        self.navigationController?.pushViewController(ctrl, animated: true)
+    }
 }

@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "placeholde-image2.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "placeholde-image2.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -26,7 +26,7 @@ open class BaseService: Service {
     // MARK: Helper Methods
     private var serverReadableDateTimeFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         return formatter
     }

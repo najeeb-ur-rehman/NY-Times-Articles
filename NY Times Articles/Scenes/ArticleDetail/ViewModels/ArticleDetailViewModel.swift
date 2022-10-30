@@ -1,5 +1,5 @@
 //
-//  ArticleListCellViewModel.swift
+//  ArticleDetailViewModel.swift
 //  NY Times Articles
 //
 //  Created by Najeeb on 30/10/2022.
@@ -7,14 +7,7 @@
 
 import Foundation
 
-protocol ArticleListCellViewModelType {
-    var articleTitle: String { get }
-    var authorNameText: String { get }
-    var publishedDate: String { get }
-    var articleImageURL: URL? { get }
-}
-
-class ArticleListCellViewModel: ArticleListCellViewModelType {
+class ArticleDetailViewModel {
     
     var articleTitle: String {
         article.title
@@ -32,10 +25,17 @@ class ArticleListCellViewModel: ArticleListCellViewModelType {
         article.media?.first?.articlePosterURL ?? nil
     }
     
-    private let article: Article
+    var articleCategory: String {
+        article.section ?? ""
+    }
+    
+    var articleSummary: String {
+        article.summary
+    }
+    
+    let article: Article
     
     init(article: Article) {
         self.article = article
     }
-    
 }
