@@ -9,6 +9,7 @@ import UIKit
 
 class ArticlesListView: UIView {
     
+    // MARK: Outlets
     @IBOutlet weak var tableview: UITableView!
     
 }

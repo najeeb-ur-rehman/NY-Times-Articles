@@ -7,7 +7,21 @@
 
 import Foundation
 
-class ArticleDetailViewModel {
+protocol ArticleDetailViewModelType {
+    var articleTitle: String { get }
+    var authorNameText: String { get }
+    var publishedDate: String { get }
+    var articleImageURL: URL? { get }
+    var articleCategory: String { get }
+    var articleSummary: String { get }
+    func openFullArticle()
+}
+
+protocol ArticleDetailCoordinatorType {
+    func openArticleURL(_ url: URL)
+}
+
+class ArticleDetailViewModel: ArticleDetailViewModelType {
     
     var articleTitle: String {
         article.title
@@ -26,16 +40,26 @@ class ArticleDetailViewModel {
     }
     
     var articleCategory: String {
-        article.section ?? ""
+        article.section ?? " - "
     }
     
     var articleSummary: String {
         article.summary
     }
     
-    let article: Article
+    private let article: Article
+    private let coordinator: ArticleDetailCoordinatorType
     
-    init(article: Article) {
+    init(article: Article, coordinator: ArticleDetailCoordinatorType) {
         self.article = article
+        self.coordinator = coordinator
     }
+    
+    func openFullArticle() {
+        guard let url = URL(string: article.articleUrl ?? "") else {
+            return
+        }
+        coordinator.openArticleURL(url)
+    }
+    
 }

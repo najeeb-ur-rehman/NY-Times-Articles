@@ -25,21 +25,7 @@ public class WebClient: APIClient {
     
     public func request(route: NetworkURLRequestConvertible,
                         _ completion: @escaping (APIResponseConvertible?, NetworkErrors?) -> Void) {
-        let urlRequest = route.urlRequest
-        var requestUrl = ""
-        if let url = urlRequest?.url?.absoluteString {
-            requestUrl = url + " -> " + (String(data: urlRequest?.httpBody ?? Data(), encoding: .utf8) ?? "Failed to Convert")
-            #if DEBUG
-            print("Initiating request: \(requestUrl)")
-            print("HEADERS")
-            urlRequest?.allHTTPHeaderFields?.forEach { print("\($0.key) : \($0.value)") }
-            #endif
-        }
-        
         session.request(route).validate().responseData(completionHandler: {  response in
-            response.data.map { String(data: $0, encoding: .utf8 ).map {
-                print("Response for : \(requestUrl)" + "\n" + $0) }
-            }
             if response.error != nil {
                 let code = response.response?.statusCode ?? ((response.error!) as NSError).code
                 let errorData = response.data ?? Data()
@@ -58,10 +44,6 @@ public class WebClient: APIClient {
                        route: NetworkURLRequestConvertible,
                        otherFormValues formValues: [String: String], _ completion: @escaping (APIResponseConvertible?,AFError?) -> Void, progress completionProgress: @escaping (Progress) -> Void)
     {
-        let urlRequest = route.urlRequest
-        if let url = urlRequest?.url?.absoluteString {
-            print(url + " -> " + (String(data: urlRequest?.httpBody ?? Data(), encoding: .utf8) ?? "Failed to Convert"))
-        }
         
         session.upload(multipartFormData: {  multipartFormData in
             documents.forEach { multipartFormData.append($0.data, withName: $0.name, fileName: $0.fileName, mimeType: $0.mimeType) }
@@ -72,11 +54,10 @@ public class WebClient: APIClient {
         }).response { response in
 
             guard response.error == nil else {
-                completion(nil,response.error)
+                completion(nil, response.error)
                 return
                 
             }
-            print(String(data: response.data!, encoding: .utf8 )!)
             if response.error != nil {
                 let code = response.response?.statusCode ?? ((response.error!) as NSError).code
                 let errorData = response.data ?? Data()

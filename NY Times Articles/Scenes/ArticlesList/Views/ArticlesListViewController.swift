@@ -6,20 +6,18 @@
 //
 
 import UIKit
-import Combine
 
 class ArticlesListViewController: UIViewController {
     
+    // MARK: Outlets
     @IBOutlet var articlesListView: ArticlesListView!
     
-    var viewModel: ArticlesListViewModel
-    
-    private var subscribers = Set<AnyCancellable>()
+    // MARK: Properties
+    var viewModel: ArticlesListViewModelType
     
     
     // MARK: Initializers
-    
-    init?(coder: NSCoder, viewModel: ArticlesListViewModel) {
+    init?(coder: NSCoder, viewModel: ArticlesListViewModelType) {
         self.viewModel = viewModel
 
         super.init(coder: coder)
@@ -31,12 +29,13 @@ class ArticlesListViewController: UIViewController {
 
     
     // MARK: ViewController Lifecycle Methods
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        articlesListView.tableview.dataSource = self
-        articlesListView.tableview.delegate = self
+        navigationItem.title = "Popular Articles"
+        navigationItem.backButtonTitle = " "
+        
+        setupTableView()
         setupBindings()
         viewModel.fetchPopularArtciles()
     }
@@ -44,33 +43,26 @@ class ArticlesListViewController: UIViewController {
 }
 
 
-// MARK: Helper Methods
+// MARK: - Helper Methods
 private extension ArticlesListViewController {
     
     func setupBindings() {
-        viewModel.$isLoading
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: showLoader(_:))
-            .store(in: &subscribers)
-        
-        viewModel.$dataAvailable
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { _ in self.reloadTableViewData() })
-            .store(in: &subscribers)
-        
-        viewModel.$errorMessage
-            .compactMap{ $0 }
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: showErrorMessage(_:))
-            .store(in: &subscribers)
-                    
+        viewModel.fetchingData = { [weak self] isFetching in
+            self?.showLoader(isFetching)
+        }
+        viewModel.onDataAvailable = { [weak self] in
+            self?.handleDataUpdate()
+        }
+        viewModel.onError = { [weak self] message in
+            self?.showErrorMessage(message)
+        }
     }
     
     func showErrorMessage(_ message: String) {
         Utils.showOkAlert(message: message, viewController: self)
     }
     
-    func reloadTableViewData() {
+    func handleDataUpdate() {
         articlesListView.tableview.reloadData()
     }
     
@@ -78,14 +70,21 @@ private extension ArticlesListViewController {
         show ? LoadingView.show(self.view) :LoadingView.hide(self.view)
     }
     
+    func setupTableView() {
+        articlesListView.tableview.dataSource = self
+        articlesListView.tableview.delegate = self
+    }
+    
 }
 
+// MARK: - UITableViewDataSource Methods
 extension ArticlesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ArticleListTableViewCell.reuseIdentifier,
-                                                 for: indexPath) as! ArticleListTableViewCell
-        if let article = viewModel.articleAtPosition(indexPath.row) {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: ArticleListTableViewCell.reuseIdentifier,
+            for: indexPath) as! ArticleListTableViewCell
+        if let article = viewModel.articleAtIndex(indexPath.row) {
             cell.viewModel = ArticleListCellViewModel(article: article)
         }
         return cell
@@ -98,14 +97,10 @@ extension ArticlesListViewController: UITableViewDataSource {
     
 }
 
-
+// MARK: - UITableViewDelegate Methods
 extension ArticlesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let art = viewModel.articleAtPosition(indexPath.row) else {
-            return
-        }
-        let ctrl = AppContainer.makeArticleDetailViewController(art)
-        self.navigationController?.pushViewController(ctrl, animated: true)
+        viewModel.showArticleDetailsAtIndex(indexPath.row)
     }
 }

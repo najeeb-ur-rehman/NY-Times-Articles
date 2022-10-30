@@ -208,6 +208,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Read full article">
                                     <color key="baseForegroundColor" name="PrimaryColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="readFullArticleButtonAction:" destination="UGw-kL-U9r" eventType="touchUpInside" id="qkd-Ol-pkr"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEC-TS-iHq">
                                 <rect key="frame" x="20" y="375" width="374" height="36"/>
@@ -242,10 +245,10 @@
                             <outlet property="articleSummaryLabel" destination="2RG-R8-ecn" id="VzA-Ab-tqe"/>
                             <outlet property="articleTitleLabel" destination="SEC-TS-iHq" id="VNC-Bc-PdO"/>
                             <outlet property="authorNameLabel" destination="0Li-Mh-GCL" id="sqh-le-xJZ"/>
+                            <outlet property="categoryLabel" destination="xJV-a3-p7m" id="RYg-eg-8pW"/>
+                            <outlet property="categoryOuterView" destination="Mz5-a9-dtN" id="oFB-B8-nEI"/>
                             <outlet property="dateLabel" destination="sO0-WG-yQ2" id="LZb-kk-u4z"/>
                             <outlet property="readFullArticleButton" destination="2h5-oC-kzX" id="A23-xW-dea"/>
-                            <outlet property="sectionLabel" destination="xJV-a3-p7m" id="RYg-eg-8pW"/>
-                            <outlet property="sectionOuterView" destination="Mz5-a9-dtN" id="oFB-B8-nEI"/>
                         </connections>
                     </view>
                     <connections>

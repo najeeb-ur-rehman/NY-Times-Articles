@@ -42,7 +42,7 @@ extension NetworkErrors {
     public var errorDescription: String? {
         switch self {
         case .noInternet:
-            return "Looks like you're offline. Please reconnect and refresh to continue using YAP."
+            return "Looks like you're offline. Please reconnect and refresh to continue."
         case .requestTimedOut:
             return "The request is timeout!"
         case .badGateway:
@@ -64,7 +64,7 @@ extension NetworkErrors {
             }
             return "Sorry, that doesn't look right."
         default:
-            return "Looks like you're offline. Please reconnect and refresh to continue using YAP."
+            return "Looks like you're offline. Please reconnect and refresh to continue."
         }
     }
 }

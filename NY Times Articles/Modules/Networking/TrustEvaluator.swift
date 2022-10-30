@@ -32,7 +32,7 @@ enum TrustEvaluator: TrustEvaluatorType {
         let policy = SecPolicyCreateBasicX509()
         let status = SecTrustCreateWithCertificates(certificate, policy, &trust)
 
-        guard status == errSecSuccess, let secTrust = trust, let publicSecKey = SecTrustCopyPublicKey(secTrust) else {
+        guard status == errSecSuccess, let secTrust = trust, let publicSecKey = SecTrustCopyKey(secTrust) else {
             return nil
         }
         return PublicKeysTrustEvaluator(keys: [publicSecKey], performDefaultValidation: true, validateHost: true)

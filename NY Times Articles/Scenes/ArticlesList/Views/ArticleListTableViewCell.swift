@@ -10,18 +10,21 @@ import SDWebImage
 
 class ArticleListTableViewCell: UITableViewCell {
 
+    // MARK: Outlets
     @IBOutlet weak var outerView: UIView!
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleDateLabel: UILabel!
     
-    var viewModel: ArticleListCellViewModel! {
+    // MARK: Properties
+    var viewModel: ArticleListCellViewModelType! {
         didSet {
             setupData()
         }
     }
     
+    // MARK: View Lifecycle Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -30,6 +33,7 @@ class ArticleListTableViewCell: UITableViewCell {
     
 }
 
+// MARK: - Helper Methods
 private extension ArticleListTableViewCell {
     
     func setupViewsAppearance() {

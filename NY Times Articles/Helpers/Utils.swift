@@ -21,5 +21,20 @@ class Utils {
         }
         viewController.present(alertController, animated: true, completion: nil)
     }
+    
+    static var apiKey: String {
+        guard let key = Bundle.main.infoDictionary?["API_KEY"] as? String else {
+            fatalError("Unable to get API Key")
+        }
+        return key
+    }
+    
+    static var baseUrl: URL {
+        guard let urlString = Bundle.main.infoDictionary?["BASE_URL"] as? String,
+              let url = URL(string: urlString) else {
+            fatalError("Unable to get Base URL")
+        }
+        return url
+    }
 }
 
