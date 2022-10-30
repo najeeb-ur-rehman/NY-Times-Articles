@@ -180,6 +180,14 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		694B014C290F191100C49EC8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				69FE92B72906907300F3F924 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		695B6814290C62510010A568 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,7 +306,7 @@
 			children = (
 				694B0147290EF2BC00C49EC8 /* Coordinators */,
 				695B6814290C62510010A568 /* Helpers */,
-				69FE92B72906907300F3F924 /* Info.plist */,
+				694B014C290F191100C49EC8 /* Supporting Files */,
 				6975253629086EC5006989AF /* Components */,
 				695D56EB2907D89B00892B7F /* Services */,
 				695D56CE2907C3AE00892B7F /* Modules */,
@@ -870,7 +878,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F74Y822XC3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "NY Times Articles/Info.plist";
+				INFOPLIST_FILE = "NY Times Articles/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -899,7 +907,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F74Y822XC3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "NY Times Articles/Info.plist";
+				INFOPLIST_FILE = "NY Times Articles/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
