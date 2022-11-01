@@ -31,11 +31,9 @@ class ArticlesListViewModel: ArticlesListViewModelType {
         articles.count
     }
     
-    
     private(set) var articles = [Article]()
-    private let articleService: ArticleServiceType
-    private let coordinator: ArticlesListCoordinatorType
-    
+    let articleService: ArticleServiceType
+    let coordinator: ArticlesListCoordinatorType
     
     init(service: ArticleServiceType, coordinator: ArticlesListCoordinatorType) {
         self.articleService = service
@@ -43,7 +41,7 @@ class ArticlesListViewModel: ArticlesListViewModelType {
     }
     
     func articleAtIndex(_ index: Int) -> Article? {
-        if index < articles.count {
+        if (0..<articles.count).contains(index) {
             return articles[index]
         }
         return nil
