@@ -13,8 +13,4 @@ target 'NY Times Articles' do
     inherit! :search_paths
   end
 
-  target 'NY Times ArticlesUITests' do
-    # Pods for testing
-  end
-
 end
