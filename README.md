@@ -1,5 +1,7 @@
 # NY Times Articles
  _App shows popuplar NY Times articles in a list, once tapped a specific article it will show the article details on next screen and one can also read the full article on NY Times website in the app by tapping on the button "Read full article"_
+ 
+ _Supported both light and dark modes_
 
 ## Architecture
 
